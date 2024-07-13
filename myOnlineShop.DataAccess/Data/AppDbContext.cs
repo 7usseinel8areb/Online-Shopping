@@ -1,4 +1,7 @@
-﻿namespace myOnlineShop.Web.Data
+﻿using Microsoft.EntityFrameworkCore;
+using myOnlineShop.Entities.Models;
+
+namespace myOnlineShop.DataAccess.Data
 {
     public class AppDbContext:DbContext
     {

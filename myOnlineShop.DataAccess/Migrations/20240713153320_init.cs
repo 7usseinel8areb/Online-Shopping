@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace myOnlineShop.Web.Migrations
+namespace myOnlineShop.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

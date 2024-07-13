@@ -1,5 +1,7 @@
 ﻿
-namespace myOnlineShop.Web.Models
+using System.ComponentModel.DataAnnotations;
+
+namespace myOnlineShop.Entities.Models
 {
     public class Category
     {

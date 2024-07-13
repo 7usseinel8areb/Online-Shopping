@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace myOnlineShop.Web.Migrations
+namespace myOnlineShop.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class EditCategory : Migration

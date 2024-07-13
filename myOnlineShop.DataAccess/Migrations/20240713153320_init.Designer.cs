@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using myOnlineShop.Web.Data;
+using myOnlineShop.DataAccess.Data;
 
 #nullable disable
 
-namespace myOnlineShop.Web.Migrations
+namespace myOnlineShop.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20240713153320_init")]

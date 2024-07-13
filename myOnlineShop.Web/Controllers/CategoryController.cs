@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using myOnlineShop.DataAccess.Data;
+using myOnlineShop.Entities.Models;
 
-namespace myOnlineShop.Web.Controllers
+namespace myOnlineShop.DataAccess.Controllers
 {
     public class CategoryController : Controller
     {

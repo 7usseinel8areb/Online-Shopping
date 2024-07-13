@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using myOnlineShop.DataAccess.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("connectionString");
