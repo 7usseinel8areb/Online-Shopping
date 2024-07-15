@@ -12,7 +12,7 @@ namespace myOnlineShop.Entities.Models
 
         public string? Description { get; set; }
 
-        public DateTime CreatedTime { get; private set; }
+        public DateTime CreatedTime { get; set; }
 
 
         public Category()
