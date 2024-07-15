@@ -29,7 +29,7 @@ namespace myOnlineShop.DataAccess.Implemntation
             _dbSet.Add(item);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate, string? IncludeEntity)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? IncludeEntity = null)
         {
             IQueryable<T> queryResult = _dbSet;
             if (predicate != null)
@@ -47,7 +47,7 @@ namespace myOnlineShop.DataAccess.Implemntation
             return queryResult.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> predicate, string? IncludeEntity)
+        public T GetFirstOrDefault(Expression<Func<T, bool>>? predicate = null, string? IncludeEntity = null)
         {
             IQueryable<T> queryResult = _dbSet;
             if (predicate != null)

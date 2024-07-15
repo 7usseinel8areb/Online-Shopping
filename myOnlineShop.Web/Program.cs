@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using myOnlineShop.DataAccess.Data;
+using myOnlineShop.DataAccess.Implemntation;
+using myOnlineShop.Enities.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddScoped<IUnitOfwork, UnitOfWork>();
 
 var app = builder.Build();
 

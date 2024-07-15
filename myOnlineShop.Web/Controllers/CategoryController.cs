@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myOnlineShop.DataAccess.Data;
+using myOnlineShop.Enities.Repositories;
 using myOnlineShop.Entities.Models;
 
 namespace myOnlineShop.DataAccess.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly AppDbContext _context;
+        public IUnitOfwork _unitOfwork;
 
-        public CategoryController(AppDbContext context)
+        public CategoryController(IUnitOfwork unitOfwork)
         {
-            _context = context;
+            _unitOfwork = unitOfwork;
         }
         public IActionResult Index()
         {
-            List<Category> categories = _context.Categories.ToList();
+            List<Category> categories = _unitOfwork.Category.GetAll().ToList();
             return View(categories);
         }
 
@@ -30,8 +31,8 @@ namespace myOnlineShop.DataAccess.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Categories.Add(newCategory);
-                _context.SaveChanges();
+                _unitOfwork.Category.Add(newCategory);
+                _unitOfwork.Complete();
                 TempData["Create"] = "Item was added succesfully";
                 return RedirectToAction("Index");
             }
@@ -41,7 +42,7 @@ namespace myOnlineShop.DataAccess.Controllers
         [HttpGet]
         public IActionResult Edit([FromRoute]int? id)
         {
-            var category = _context.Categories.Find(id);
+            var category =_unitOfwork.Category.GetFirstOrDefault(c => c.Id == id);
             if (category == null || id == null)
                 return NotFound("This category wasn't found");
             return View(category);
@@ -59,8 +60,11 @@ namespace myOnlineShop.DataAccess.Controllers
                 oldCategory.Name = updatedCategory.Name;
                 oldCategory.Description = updatedCategory.Description;
                 _context.SaveChanges();*/
-                _context.Categories.Update(updatedCategory);
-                _context.SaveChanges();
+                /*_context.Categories.Update(updatedCategory);
+                _context.SaveChanges();*/
+
+                _unitOfwork.Category.Update(updatedCategory);
+                _unitOfwork.Complete();
                 TempData["Update"] = "Item updated succesfully";
                 return RedirectToAction("Index");
             }
@@ -70,11 +74,11 @@ namespace myOnlineShop.DataAccess.Controllers
         [HttpGet]
         public IActionResult Delete([FromRoute]int id)
         {
-            Category category = _context.Categories.Find(id);
+            Category category = _unitOfwork.Category.GetFirstOrDefault(c => c.Id == id);
             if (category == null)
                 NotFound();
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _unitOfwork.Category.Delete(category);
+            _unitOfwork.Complete();
 
             TempData["Delete"] = "Item has been Deleted Succesfully";
             return RedirectToAction("Index");

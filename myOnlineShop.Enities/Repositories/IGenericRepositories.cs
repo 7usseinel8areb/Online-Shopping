@@ -13,11 +13,11 @@ namespace myOnlineShop.Enities.Repositories
 
         // .toList()
         //Expression<Func<T, bool>> predicate, string? IncludeEntity    =>    to amtch .Include(entity) & .where(expression)
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate, string? IncludeEntity);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? IncludeEntity = null);
 
         //get single element
         //Expression<Func<T, bool>> predicate, string? IncludeEntity    =>    to amtch .Include(entity) & .where(expression) & for example .toSingleOrDefault
-        T GetFirstOrDefault(Expression<Func<T, bool>> predicate, string? IncludeEntity);
+        T GetFirstOrDefault(Expression<Func<T, bool>>? predicate = null, string? IncludeEntity = null);
 
         // Add new Element
         void Add(T item);
