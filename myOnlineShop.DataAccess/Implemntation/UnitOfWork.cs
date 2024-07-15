@@ -12,10 +12,14 @@ namespace myOnlineShop.DataAccess.Implemntation
     {
         private readonly AppDbContext _context;
         public ICategoryRepository Category {  get; private set; }
+
+        public IProductRepository Product { get; set; }
+
         public UnitOfWork(AppDbContext context )
         {
             _context = context;
             Category = new CategoryRepository(context);
+            Product = new ProductRepository(context);
         }
         public int Complete()
         {

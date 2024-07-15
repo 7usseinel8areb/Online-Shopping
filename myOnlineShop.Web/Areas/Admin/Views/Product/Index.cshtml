@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.PageTitle = "Product Management";
+    ViewBag.CardTitle = "Products";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<div class="mb-2">
+    <a asp-action="Create" asp-controller="Product" class="btn btn-primary">Create new</a>
+</div>
+@if (!Model.Any())
+{
+    <div class="alert-warning w-100 rounded-2">
+        <p class="m-2">No categories added yet</p>
+    </div>
+}
+else
+{
+    <table class="table table-hover table-bordered text-center">
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Price</td>
+            <td>Date Created</td>
+            <td>Image</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (Product product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.CreatedDate</td>
+                <td>
+                    <div class="image ">
+                        <img src="/@product.Image" style="height:100px" alt="Alternate Text" />
+                    </div>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id" asp-controller="Product" class="btn btn-success">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id" asp-controller="Product" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

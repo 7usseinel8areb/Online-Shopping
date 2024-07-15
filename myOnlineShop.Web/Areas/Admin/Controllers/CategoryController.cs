@@ -3,8 +3,9 @@ using myOnlineShop.DataAccess.Data;
 using myOnlineShop.Enities.Repositories;
 using myOnlineShop.Entities.Models;
 
-namespace myOnlineShop.DataAccess.Controllers
+namespace myOnlineShop.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         public IUnitOfwork _unitOfwork;
@@ -24,7 +25,7 @@ namespace myOnlineShop.DataAccess.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken] // Secure from hacking => Cross side forgery attack
         public IActionResult Create([FromForm] Category newCategory)
@@ -40,9 +41,9 @@ namespace myOnlineShop.DataAccess.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit([FromRoute]int? id)
+        public IActionResult Edit([FromRoute] int? id)
         {
-            var category =_unitOfwork.Category.GetFirstOrDefault(c => c.Id == id);
+            var category = _unitOfwork.Category.GetFirstOrDefault(c => c.Id == id);
             if (category == null || id == null)
                 return NotFound("This category wasn't found");
             return View(category);
@@ -72,7 +73,7 @@ namespace myOnlineShop.DataAccess.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete([FromRoute]int id)
+        public IActionResult Delete([FromRoute] int id)
         {
             Category category = _unitOfwork.Category.GetFirstOrDefault(c => c.Id == id);
             if (category == null)
